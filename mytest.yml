@@ -1,0 +1,16 @@
+---
+- name: Erstelle eine Testdatei
+  hosts: all
+  become: no  # Nutze 'become: yes' nur, wenn du Administratorrechte benötigst.
+  tasks:
+    - name: Erstelle eine leere Datei
+      ansible.builtin.file:
+        path: /tmp/testdatei.txt
+        state: touch
+
+    - name: Füge Inhalt zur Testdatei hinzu
+      ansible.builtin.copy:
+        dest: /tmp/testdatei.txt
+        content: |
+          Das ist eine Testdatei.
+          Diese Zeile ist ein Test.
